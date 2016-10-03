@@ -1,0 +1,39 @@
+<div class="col-md-12">
+  <p id="notice"><%= notice %></p>
+</div>
+
+<div class="row">
+  <div class="col-md-10">
+    <h1>Journal</h1>
+  </div>
+
+  <div class="col-md-2 pull-right">
+    <%= link_to 'New Post', new_post_path, class: "btn-success btn-new-post" %>
+  </div>
+</div>
+
+<% if @posts.exists? %>
+    <% @posts.each do |post| %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-8">
+                <h4><%= link_to "#{post.title}", post %></h4>
+              </div>
+              <div class="col-md-4">
+                <div class="pull-right">
+                  <%= link_to 'Edit', edit_post_path(post), class: "btn btn-info" %> <%= link_to 'Destroy', post, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <%= truncate(post.body, length: 400, ommission: '...') { link_to " Read More", post} %>
+          </div>
+        </div>
+    <% end %>
+<% else %>
+    <p>There are no posts</p>
+<% end %>
+
+<%= will_paginate @posts %>

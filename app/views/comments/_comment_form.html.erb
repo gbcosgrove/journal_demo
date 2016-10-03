@@ -1,0 +1,10 @@
+<%= form_for [comment, Comment.new], method: :post, remote: :true do |f| %>
+    <a data-toggle="collapse" data-target="#comment_<%= comment.id %>_comment">Reply</a>
+    <div id="comment_<%= comment.id %>_comment" class="collapse"><br>
+      <div class="form-group">
+        <%= f.label :body, "Comment" %>
+        <%= f.text_area :body, class: 'form-control' %><br/>
+        <%= f.submit "Reply" %>
+      </div>
+    </div>
+<% end %>

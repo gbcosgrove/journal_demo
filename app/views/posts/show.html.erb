@@ -1,0 +1,31 @@
+<div class="well">
+  <%= content_tag(:h2, @post.title) %>
+  <%= content_tag(:p, @post.body) %>
+  <small>Submitted <%= time_ago_in_words(@post.created_at) %> ago</small><br>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <%= link_to 'Back', posts_path %>
+</div>
+
+<%= form_for [@post, Comment.new], method: :post, remote: :true do |f| %>
+    <a data-toggle="collapse" data-target="#post_<%= @post.id %>_comment">Reply</a>
+    <div id="post_<%= @post.id %>_comment" class="collapse"><br>
+      <div class="form-group">
+        <%= f.label :body, "Comment" %>
+        <%= f.text_area :body, class: 'form-control' %><br/>
+        <%= f.submit "Add Comment" %>
+      </div>
+    </div>
+
+<% end %>
+
+<h3><%= @post.comments.length %> Comments</h3>
+
+<% if @post.comments.length > 0 %>
+  <button type="button" class="btn" data-toggle="collapse" data-target="#posts_<%= @post.id %>_comments">Show Comments</button>
+
+  <div id="posts_<%= @post.id %>_comments" class="collapse">
+    <br>
+    <%= render(partial: 'comments/comment', collection: @post.comments) %>
+  </div>
+<% end %>
+
