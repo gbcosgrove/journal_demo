@@ -43,6 +43,17 @@
   -webkit-user-select: none;
 }
 
+.form-control {
+  border-radius: 0;
+}
+
+.well {
+  border-radius: 0;
+}
+
+.panel {
+  border-radius: 0;
+}
 
 .comment-well {
   margin-left: -3em;
@@ -51,4 +62,9 @@
 
 .comment-list {
   list-style: none;
+}
+
+.btn {
+  border-radius: 0;
+  border: 1px solid black;
 }

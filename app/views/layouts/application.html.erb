@@ -9,6 +9,7 @@
 <body class="<%= controller_name %> <%= action_name %>">
 <%= render "shared/navbar" %>
   <div class="container">
+    <%= render "layouts/flashes"  %>
     <%= yield %>
   </div>
 <%= render "shared/footer" %>

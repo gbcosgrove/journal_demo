@@ -60,6 +60,8 @@
 #
 
 Rails.application.routes.draw do
+  get 'profiles/show'
+
   devise_for :users, :controllers => { registrations: 'registrations' }
   root 'posts#index'
 

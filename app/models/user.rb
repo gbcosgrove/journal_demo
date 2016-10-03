@@ -30,10 +30,17 @@ class User < ActiveRecord::Base
             :presence => true,
             :uniqueness => {
                 :case_sensitive => false
-            } # etc.
+            }
 
 
   validate :username
+
+  has_many :posts
+  has_many :comments
+
+  def full_name
+    first_name + ' ' + last_name
+  end
 
   def validate_username
     if User.where(email: username).exists?
@@ -58,6 +65,5 @@ class User < ActiveRecord::Base
   def login
     @login || self.username || self.email
   end
-
 
 end

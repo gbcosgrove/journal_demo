@@ -1,12 +1,13 @@
 <div class="well">
   <%= content_tag(:h2, @post.title) %>
   <%= content_tag(:p, @post.body) %>
-  <small>Submitted <%= time_ago_in_words(@post.created_at) %> ago</small><br>
-  <%= link_to 'Edit', edit_post_path(@post) %> |
-  <%= link_to 'Back', posts_path %>
+  <small>Submitted by: <%= post_creator(@post) %> <%= time_ago_in_words(@post.created_at) %> ago</small><br>
+  <%= link_to 'Back', posts_path %> <br />
+  <%= edit_post(@post) %>  <%= destroy_post(@post) %>
+
 </div>
 
-<%= form_for [@post, Comment.new], method: :post, remote: :true do |f| %>
+<%= form_for [@post, new_comment] do |f| %>
     <div class="form-group">
       <%= f.label :body, "Comment" %>
       <%= f.text_area :body, class: 'form-control' %><br/>
@@ -14,10 +15,8 @@
     </div>
 <% end %>
 
-<h3><%= @post.comments.length %> Comments</h3>
+<h3>Comments</h3>
 
-<% if @post.comments.length > 0 %>
-  <ul class="comment-list">
-    <%= render(partial: 'comments/comment', collection: @post.comments) %>
-  </ul>
-<% end %>
+<ul class="comment-list">
+  <%= render(partial: 'comments/comment', collection: @post.comments) %>
+</ul>

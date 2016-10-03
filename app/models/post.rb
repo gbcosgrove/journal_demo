@@ -11,4 +11,8 @@
 
 class Post < ActiveRecord::Base
   has_many :comments, as: :commentable
+
+  validates :title, :body, :user_id, presence: true
+  validates :title, length: { minimum: 5 }
+  validates :body, length: { minimum: 30 }
 end

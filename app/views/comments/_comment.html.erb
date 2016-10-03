@@ -3,12 +3,23 @@
   <div class="well comment-well">
     <%= comment.body %><br>
     <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small><br>
-    <a href="#demo" data-toggle="collapse">Reply</a>
+    <%= comment_creator(comment) %> <br />
+    <%= destroy_comment(comment) %>
+    <%= edit_comment(comment).html_safe %>
+    <a href="#comment_reply_<%= comment.id %>" data-toggle="collapse", class="btn btn-default">Reply</a>
   </div>
-  <div id="demo" class="collapse">
+  <div id="comment_reply_<%= comment.id %>" class="collapse">
     <%= form_for [comment, Comment.new] do |f| %>
       <%= f.text_area :body, placeholder: "Add a Reply", class: "form-control" %><br/>
       <%= f.submit "Reply"  %>
+    <% end %>
+    <br />
+  </div>
+
+  <div id="comment_edit_<%= comment.id %>" class="collapse">
+    <%= form_for comment do |f| %>
+      <%= f.text_area :body, placeholder: "Add a Reply", class: "form-control" %><br/>
+      <%= f.submit "Update"  %>
     <% end %>
     <br />
   </div>
@@ -16,6 +27,4 @@
     <%= render partial: 'comments/comment', collection: comment.comments %>
   </ul>
 </li>
-
-
 

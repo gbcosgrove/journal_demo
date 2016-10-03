@@ -1,0 +1,23 @@
+<h1><%= @user.full_name %></h1>
+
+<h3>Posts</h3>
+
+<ul>
+  <% @posts.each do |p| %>
+    <li>
+      <%= p.title %><br />
+      <%= p.body %><br />
+      <%= medium_date(p.created_at) %><br />
+      <%= medium_date(p.updated_at) %><br />
+    </li>
+  <% end %>
+</ul>
+
+
+<h3>Comments</h3>
+
+<ul>
+  <% @comments.each do |p| %>
+    <li><%= p %></li>
+  <% end %>
+</ul>

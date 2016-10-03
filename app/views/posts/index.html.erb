@@ -1,14 +1,10 @@
-<div class="col-md-12">
-  <p id="notice"><%= notice %></p>
-</div>
-
 <div class="row">
   <div class="col-md-10">
     <h1>Journal</h1>
   </div>
 
   <div class="col-md-2 pull-right">
-    <%= link_to 'New Post', new_post_path, class: "btn-success btn-new-post" %>
+    <%= link_to 'New Post', new_post_path, class: "btn btn-default btn-new-post" %>
   </div>
 </div>
 
@@ -22,7 +18,7 @@
               </div>
               <div class="col-md-4">
                 <div class="pull-right">
-                  <%= link_to 'Edit', edit_post_path(post), class: "btn btn-info" %> <%= link_to 'Destroy', post, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+                  <%= edit_post(post) %> <%= destroy_post(post) %>
                 </div>
               </div>
             </div>
