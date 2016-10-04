@@ -1,15 +1,14 @@
 <div class="well">
   <%= content_tag(:h2, @post.title) %>
   <%= content_tag(:p, @post.body) %>
-  <small>Submitted by: <%= post_creator(@post) %> <%= time_ago_in_words(@post.created_at) %> ago</small><br>
-  <%= link_to 'Back', posts_path %> <br />
+  <small>Submitted by: <%= post_creator(@post) %> <%= time_ago_in_words(@post.created_at) %> ago</small><br />
+  <%= link_to 'Back', posts_path, class: 'btn btn-default' %>
   <%= edit_post(@post) %>  <%= destroy_post(@post) %>
 
 </div>
 
 <%= form_for [@post, new_comment] do |f| %>
     <div class="form-group">
-      <%= f.label :body, "Comment" %>
       <%= f.text_area :body, class: 'form-control' %><br/>
       <%= f.submit "Add Comment" %>
     </div>

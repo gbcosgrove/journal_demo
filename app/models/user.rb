@@ -65,5 +65,4 @@ class User < ActiveRecord::Base
   def login
     @login || self.username || self.email
   end
-
 end

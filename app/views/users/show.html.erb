@@ -2,22 +2,30 @@
 
 <h3>Posts</h3>
 
-<ul>
+<ul class="comment-list">
   <% @posts.each do |p| %>
-    <li>
-      <%= p.title %><br />
-      <%= p.body %><br />
-      <%= medium_date(p.created_at) %><br />
-      <%= medium_date(p.updated_at) %><br />
+    <li class="well">
+      <b>Title:</b> <%= p.title %><br />
+      <b>Post:</b> <%= p.body %><br />
+      <b>Created At:</b> <%= plain_date(p.created_at) %><br />
+      <b>Updated At:</b> <%= plain_date(p.updated_at) %><br />
     </li>
   <% end %>
 </ul>
 
+<hr>
 
 <h3>Comments</h3>
 
-<ul>
-  <% @comments.each do |p| %>
-    <li><%= p %></li>
+<ul class="comment-list">
+  <% @comments.each do |c| %>
+    <li class="well">
+      <b>Comment:</b> <%= c.body %><br />
+      <b>Created At:</b> <%= plain_date(c.created_at) %><br />
+      <b>Updated At:</b> <%= plain_date(c.updated_at) %><br />
+    </li>
+
   <% end %>
 </ul>
+
+<%= download_json_profile(@user) %>

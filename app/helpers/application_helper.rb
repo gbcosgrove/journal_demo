@@ -13,14 +13,18 @@ module ApplicationHelper
     h date.strftime("%Y-%m-%d") rescue ''
   end
 
+  def plain_date(date)
+    h date.strftime("%A - %b %d, %I:%M %p") rescue ''
+  end
+
   def post_creator(post)
-    poster = User.find(post.user_id).username
-    "#{poster}"
+    poster = User.find(post.user_id)
+    link_to "#{poster.username}", user_path(poster)
   end
 
   def comment_creator(comment)
-    commenter = User.find(comment.user_id).username
-    "#{commenter}"
+    commenter = User.find(comment.user_id)
+    link_to "#{commenter.username}", user_path(commenter)
   end
 
   def new_comment
@@ -48,6 +52,12 @@ module ApplicationHelper
   def destroy_comment(comment)
     if current_user.id == comment.user_id
       link_to "Delete", {controller: "comments", action: "destroy", id: comment.id}, class: "btn btn-default", confirm: "Are you sure?", method: :delete
+    end
+  end
+
+  def download_json_profile(user)
+    if current_user.id == user.id
+      link_to "Download", download_user_path(@user), method: :post
     end
   end
 end

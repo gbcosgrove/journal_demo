@@ -4,9 +4,9 @@
     <%= comment.body %><br>
     <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small><br>
     <%= comment_creator(comment) %> <br />
-    <%= destroy_comment(comment) %>
-    <%= edit_comment(comment).html_safe %>
     <a href="#comment_reply_<%= comment.id %>" data-toggle="collapse", class="btn btn-default">Reply</a>
+    <%= edit_comment(comment) %>
+    <%= destroy_comment(comment) %>
   </div>
   <div id="comment_reply_<%= comment.id %>" class="collapse">
     <%= form_for [comment, Comment.new] do |f| %>
